@@ -13,4 +13,4 @@
 
 - 根据定义null没有原型，并作为这个原型链的最后一个环节
 
-- __proto__实际上指向的是js的内部属性[[prototype]]，由于js的机制无法直接访问内部属性，可以通过Object.getPrototypeOf()和Object.setPrototypeOf()访问器来访问
+- __proto__实际上指向的是js的内部属性`[[prototype]]`，由于js的机制无法直接访问内部属性，可以通过Object.getPrototypeOf()和Object.setPrototypeOf()访问器来访问
