@@ -1,0 +1,1 @@
+- Object.create(null);和｛｝很像，但是并不会创建Object.prototype这个委托，所以它比{}“更空”
