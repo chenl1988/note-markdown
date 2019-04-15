@@ -18,5 +18,5 @@
 
 ## MVVM
 
-- MVVM 只是把 MVC 的 Controller 和 MVP 中的 Presenter 改成了 ViewModel。view 的变化会自动到 ViewModel,ViewModel 的变化也会自动同步到 View 上显示
-- 这种自动同步是因为 ViewModel 中的属性实现了 Observer，当属性变更时都能触发对应的操作
+- MVVM 只是把 MVC 的 Controller 和 MVP 中的 Presenter 改成了 ViewModel。view 的变化会自动同步到 ViewModel,ViewModel 的变化也会自动同步到 View 上显示
+- 这种自动同步是因为 ViewModel 中的属性实现了 Observer，当属性(数据)变更时都能触发对应的操作
