@@ -46,10 +46,11 @@ Function.prototype.myBind = function (context) {
   var args = [...arguments].slice(1);
   /* bind返回的是方法 ,arguments为返回方法的参数*/
   return function F() {
+    /* 可借它们实现继承 */
     if (this instanceof F) {
       return new _this(...args, ...arguments);
     }
-    //arguments为返回方法的arguments
+    //arguments为返回方法F的参数
     return _this.apply(context, args.concat(...arguments))
   }
 }
