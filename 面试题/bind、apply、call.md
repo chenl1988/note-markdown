@@ -62,15 +62,19 @@ console.log(bindRes("33", "55"));
 /*原生js实现call方法*/
 Function.prototype.myCall = function (context) {
   var context = context || window;
-  //给context添加一个属性
 
+  //给context添加fn属性
   context.fn = this;
+
   //将context后面的参数取出来
   var args = [...arguments].slice(1);
 
+  //执行方法
   var result = context.fn(...args);
 
+  //删除context上的方法
   delete context.fn;
+
   return result;
 }
 
