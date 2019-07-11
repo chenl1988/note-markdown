@@ -1,6 +1,6 @@
 ## getter 与 setter
 
-- getter 和 setter 是 ES5 提供的新特性
+- getter 和 setter 是 ES5 提供的新特性，用来检测属性变化
 - 一个 getter 是一个获取某个特定属性的值的方法
 - 一个 setter 是一个设置某个属性的值的方法
 - 可以为预定义的或用户定义的对象定义 getter 和 setter 以支持新增的属性
