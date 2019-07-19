@@ -13,3 +13,9 @@
 - 常见的基于数据劫持的双向绑定有两种实现，一个是 Vue3.x 之前使用的 Object.defineProperty，另一个是 ES2015 中新增的 Proxy，而 Vue3.x 版本后加入 Proxy 从而代替 Object.defineProtperty
 
 - 严格来讲 Proxy 应该被称为“代理”而非“劫持”
+
+---
+
+- vue 最核心的功能有两个：
+  - 响应式的数据绑定系统
+  - 组件系统
