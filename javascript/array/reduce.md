@@ -15,6 +15,14 @@
   - initialValue （作为第一次调用 callback 的第一个参数。）[可选。传递给(回调)函数的初始值]
 
 ```
+//数据扁平化
+var flattened = [
+  [0, 1],
+  [2, 3],
+  [3, 4]
+].reduce(function (a, b) {
+  return a.concat(b);
+})
 /* 数组累加 */
 const arr = [1, 2, 3, 4, 5, 6];
 const reduced = arr.reduce((pre, current) => pre + current);

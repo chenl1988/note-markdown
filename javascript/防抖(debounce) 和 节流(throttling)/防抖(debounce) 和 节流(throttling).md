@@ -4,7 +4,9 @@
 
 - 针对此类快速连续触发和不可控的高频触发问题，debounce 和 throttling 给出了两种解决策略
 
-### debounce，去抖动
+### debounce，
+
+- 原理：尽管触发事件，但是我一定在事件触发 n 秒后才执行，如果你在一个事件触发的 n 秒内又触发了这个事件，那我就以新的时间为准，n 秒后才执行，总之，就是要等你触发完事件 n 秒内不再触发事件，我才执行。
 
 - **策略是当事件被触发时，设定一个周期延迟执行动作，若期间又被触发，则重新设定周期，直到周期结束，执行动作**。这是 debounce 的基本思想，在后期又扩展了**前缘 debounce，即执行动作在前，然后设定周期，周期内有事件被触发，不执行动作，而周期重新设定**
 
@@ -49,11 +51,21 @@
 ### 节流 throttling
 
 - 定义：触发函数事件后，短时间间隔内无法连续调用，只有上一次函数执行后，过了规定的时间间隔，才能进行下一次的函数
+
 - 原理：对处理函数进行延时操作，若设定的延时到来之前，再次触发事件，则清除上一次的延时操作定时器，重新定时
+
+- 原理：如果你持续触发事件，每隔一段时间，只执行一次事件
+
 - 节流的策略是，固定周期内，只执行一次动作，若有新事件触发，不执行。周期结束后，又有事件触发，开始新的周期
+
 - 节流策略也分前缘和延迟两种。与 debounce 类似，延迟是指周期结束后执行动作，前缘是指执行动作后再开始周期
 
 - trrottling 的特点在连续高频触发事件时，动作会被定期执行，响应平滑
+
+- 关于节流的实现，有两种主流的实现方式，一种是时间戳，一种是设置定时器
+
+  - 时间戳，当触发事件的时候，我们取出当前时间戳，然后减去之前的时间戳（最一开始值设为0），如果大于设置的时间周期，就执行函数，然后更新时间戳为当前的的时间戳，如果小于，就不执行。
+  - 定时器，当触发事件的时候，我们设置一个定时器，在触发事件的时候，如果定时器存在，就不执行，直到定时器执行，然后执行函数，清空定时器，这样就可以设置下个定时器
 
 - 延迟节流
   ![](./延迟throttling-节流示意图.png)
@@ -62,6 +74,64 @@
   ![](./前缘throttling-节流示意图.png)
 
 ```
+  // 时间戳 
+  var count = 1;
+  var container = document.getElementById('container');
+
+  function getUserAction(e) {
+    console.log(this);
+    console.log(e);
+    container.innerHTML = count++;
+  };
+
+  function throttle(func, wait) {
+    var context, args;
+    var pervious = 0;
+    return function () {
+      var now = +new Date();
+      context = this;
+      args = arguments;
+      if (now - pervious > wait) {
+        func.apply(context, args);
+        pervious = now;
+      }
+    }
+  }
+
+  container.onmousemove = throttle(getUserAction, 1000);
+```
+```
+// 定时器
+var count = 1;
+var container = document.getElementById('container');
+
+function getUserAction(e) {
+  console.log(this);
+  console.log(e);
+  container.innerHTML = count++;
+};
+
+
+function throttle(func,wait){
+  var timeout;
+  var pervious = 0;
+
+  return function(){
+    context = this;
+    args = arguments;
+    if(!timeout){
+      timeout = setTimeout(() => {
+        timeout = null;
+        func.apply(context,args);
+      }, wait);
+    }
+  }
+}
+
+container.onmousemove = throttle(getUserAction, 1000);
+```
+```
+//时间戳+定时器
 function throttle(method, mustRunDelay) {
   let timer, args = arguments,
     start;
