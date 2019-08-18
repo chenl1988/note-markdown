@@ -1,6 +1,7 @@
 ## reduce
 
 - reduce() 方法接收一个函数作为**累加器（accumulator）**，数组中的每个值（从左到右）开始缩减，最终为一个值。
+
 - reduce 为数组中的每一个元素依次执行回调函数，不包括数组中被删除或从未被赋值的元素
 
 - 语法:arr.reduce(callback,[initialValue])

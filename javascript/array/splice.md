@@ -1,6 +1,8 @@
 ## splice
 
 - 通过删除或替换现有元素/或添加新元素来更改数组的内容，此方法修改了数组的本身
+  - `splice(start,number,value...)`
+  - value为插入项
 
 ```
   const arr = ["a", "c", "d", "e"];
