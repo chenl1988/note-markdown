@@ -2,6 +2,13 @@
 
 - 在 javascript 中，所有代码都是单线程执行的（这意味着任何两句代码都不能同时运行），由于这个“缺陷”，导致 JavaScript 的所有网络操作，**浏览器事件，都是异步执行的，异步执行可以用回调函数实现**：
 
+- Promise 本身是同步的立即执行函数，在 executor 中执行 resolve 或者 reject 的时候，此时是异步操作，会先执行 then/catch 等，当主栈完成后，才会去调用 resolv/reject 中存放的方法执行。
+
+- promise1 是 resolved 或 rejected: 这个 task 就会放入当前事件循环回合的 microtask queue（微任务）；而 setTimeout 的回调也是个 task，会被放入 macrotask queue（宏任务），即使是 0ms 的情况
+
+  - macro-task(宏任务)：包括整体代码 script，setTimeout，setInterval
+  - micro-task(微任务)：Promise，process.nextTick
+
 ```
 function callback() {
   console.log("Done");
