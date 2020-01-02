@@ -8,4 +8,4 @@
 
 ## 类数组如何转化成数组？
 
-- Array.prototype.slice.call()
+- Array.prototype.slice.call()  
