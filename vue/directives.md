@@ -17,7 +17,7 @@
   - name：指令名，不包括v-前缀
   - value:指令的绑定值，例如v-my-directives="1+1"中，绑定值为2
   - oldValue:指令绑定前的一个值，仅在update和componentUpdate钩子中可用，无论值是否改变都可用
-  - expression:字符串形式的指令表达式。例如v-my-directive="1+1"中，表达式"1+1"
+  - expression:字符串形式的指令表达式。例如v-my-directive="1+1"中，表达式" 1 + 1 "
   - arg:传给指令的参数，可选。例如：v-my-directive:foo中，参数为foo
   - modifires:一个包含修饰符的对象，例如：v-my-directive.foo.bar,修饰符对象为{foo:true,bar:true}
 - vnode:Vue编译生成的虚拟节点
